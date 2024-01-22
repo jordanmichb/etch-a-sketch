@@ -1,0 +1,86 @@
+:root {
+    --input-width: 6em;
+    --input-height: 3em;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    min-width: 960px;
+    /*
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    */
+}
+
+h1 {
+    text-align: center;
+    padding: 1.5em;
+}
+
+#controls {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#grid-size {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: var(--input-width);
+    height: var(--input-height);
+    border: 1px solid;
+    border-bottom: none;
+}
+
+#grid-size:focus {
+    outline: none;
+}
+
+/* Hide arrows and spinners in input box */
+/* Chrome, Safari, Edge, Opera */
+#grid-size::-webkit-outer-spin-button,
+#grid-size::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+#grid-size {
+  appearance: textfield;
+}
+
+#buttons {
+    width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.input {
+    width: var(--input-width);
+    height: var(--input-height);
+}
+
+.container {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    outline: 1px solid;
+    max-width: 960px;
+    min-width: 960px;
+    width: 960px;
+    height: 960px;
+}
+
+.grid-square {
+    outline: 1px solid;
+    transition: background-color 300ms;
+}
