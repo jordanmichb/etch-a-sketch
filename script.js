@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const generateBtn = document.querySelector("#generate");
 const gridSize = document.querySelector("#grid-size");
 
+
 function removeAllChildNodes(parent) {
     // Use loop instead of innerHTML = '' to ensure event handlers are removed
     while (parent.firstChild) {
