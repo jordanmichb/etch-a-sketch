@@ -83,5 +83,6 @@ h1 {
 
 .grid-square {
     outline: 1px solid;
+    background-color: white;
     transition: background-color 300ms;
 }
