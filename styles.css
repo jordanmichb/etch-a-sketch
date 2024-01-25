@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Playfair Display";
+    src: url("./fonts/playfair-display/PlayfairDisplay-Regular.ttf");
+}
+@font-face {
+    font-family: Montserrat;
+    src: url("./fonts/montserrat/Montserrat-Regular.ttf");
+}
+
 :root {
     --input-width: 6em;
     --input-height: 3em;
@@ -13,17 +22,16 @@ body {
     width: 100vw;
     height: 100vh;
     min-width: 960px;
-    /*
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    */
+    background-color: #f0efeb;
+    font-family: Montserrat;
 }
 
 h1 {
     text-align: center;
     padding: 1.5em;
+    font-family: "Playfair Display";
+    letter-spacing: .2em;
+    font-size: 2.3srem;
 }
 
 #controls {
@@ -32,13 +40,15 @@ h1 {
 }
 
 #grid-size {
-    display: block;
+    display: inline-block;
     margin: 0 auto;
     text-align: center;
     width: var(--input-width);
     height: var(--input-height);
-    border: 1px solid;
+    border: 1px solid #cb997e;
+    border-radius: 5px 5px 0 0;
     border-bottom: none;
+    font-family: Montserrat;
 }
 
 #grid-size:focus {
@@ -61,18 +71,87 @@ h1 {
     width: 960px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    
 }
 
+.side-btn {
+    flex: 1;
+}
+
+#marker {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#marker-color {
+    height: var(--input-height);
+    width: 2em;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+}
+
+#marker-btn {
+    border-radius: 0 5px 5px 0;
+    border-color: #f77f00;
+}
+
+#generate {
+    border-radius: 0 0 5px 5px;
+}
+
+#eraser {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7em;
+}
+
+#show-hide {
+    display: flex;
+    align-items: center;
+
+}
+
+#check-box {
+    font-size: .8rem;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+}
+
+#check:hover {
+    cursor: pointer;
+}
+
+#check {
+    padding: -5px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #cb997e;
+}
 
 .input {
     width: var(--input-width);
     height: var(--input-height);
 }
 
+.btn {
+    background-color: #fff1e6;
+    border: 2px solid #cb997e;
+    border-radius: 5px;
+    font-family: Montserrat;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
 .container {
+    box-sizing: content-box;
+    border: 10px solid #a5a58d;
     margin: 0 auto;
+    padding: 1px;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     outline: 1px solid;
     max-width: 960px;
@@ -82,7 +161,7 @@ h1 {
 }
 
 .grid-square {
-    outline: 1px solid;
-    background-color: white;
+    outline: 1px dashed #f0efeb;
+    background-color: #ffffff;
     transition: background-color 300ms;
 }

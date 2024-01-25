@@ -1,16 +1,27 @@
 const container = document.querySelector(".container");
 const generateBtn = document.querySelector("#generate");
-const eraserBtn = document.querySelector("#eraser");
-const markerBtn = document.querySelector("#marker");
+const eraserBtn = document.querySelector("#eraser-btn");
+const markerBtn = document.querySelector("#marker-btn");
+const markerColor = document.querySelector("#marker-color");
 const gridSize = document.querySelector("#grid-size");
-//const squares = document.querySelectorAll(".grid-square");
+const check = document.querySelector("#check");
 let marker = true;
 
 
 generateBtn.addEventListener('click', generateGrid);
 
+check.addEventListener('click', () => {
+    check.getAttribute('src') === "./images/checkbox-off.png" ? 
+        check.setAttribute('src', './images/checkbox.png')    :
+        check.setAttribute('src', './images/checkbox-off.png') ;
+
+    toggleShowGrid();
+})
+
 eraserBtn.addEventListener('click', () => {
     if (marker) {
+        eraserBtn.style.borderColor = "#f77f00";
+        markerBtn.style.borderColor = "#cb997e";
         const squares = document.querySelectorAll(".grid-square");
         marker = false;
         squares.forEach(square => {
@@ -22,9 +33,10 @@ eraserBtn.addEventListener('click', () => {
 
 markerBtn.addEventListener('click', () => {
     if (!marker) {
+        markerBtn.style.borderColor = "#f77f00";
+        eraserBtn.style.borderColor = "#cb997e";
         const squares = document.querySelectorAll(".grid-square");
         marker = true;
-        console.log('marking')
         squares.forEach(square => {
             square.removeEventListener('mouseover', erase)
             square.addEventListener('mouseover', color);
@@ -32,6 +44,21 @@ markerBtn.addEventListener('click', () => {
     };
 });
 
+function toggleShowGrid() {
+    const grid = document.querySelectorAll(".grid-square");
+    if (check.getAttribute('src') === "./images/checkbox-off.png") {
+        grid.forEach(square => {
+            square.style.outline = 'none';
+        });
+    }
+    else {
+        grid.forEach(square => {
+            square.style.outline = '1px dashed #f0efeb';
+        });
+    }
+}
+
+// Called when generating grid. Removes all squares so new ones can be placed
 function removeAllChildNodes(parent) {
     // Use loop instead of innerHTML = '' to ensure event handlers are removed
     while (parent.firstChild) {
@@ -45,35 +72,37 @@ gridSize.oninput = () => {
         gridSize.style.border = "1px solid red";
     }
     else {
-        gridSize.style.border = "1px solid";
+        gridSize.style.border = "1px solid #cb991e";
         gridSize.style.borderBottom = "none";
     }
 
 };
 
 function color() {
-    this.style.backgroundColor = 'black';
+    this.style.backgroundColor = markerColor.value;
 }
 
 function erase() {
-    this.style.backgroundColor = 'white';
+    this.style.backgroundColor = '#FFFFFF';
 }
 
 // Generate a new grid based on dimensions in input box
 function generateGrid() {
     const dimensions = gridSize.value;
-    if (dimensions > 0 && dimensions < 101) {
+    if (dimensions > 0 && dimensions < 101 && dimensions % 1 === 0) {
         removeAllChildNodes(container);
-        for (let i = 0; i < dimensions; i++) {
-            for (let i = 0; i < dimensions; i++) {
-                const square = document.createElement('div');
-                square.classList.add('grid-square');
-                square.style.width = `${960 / dimensions}px`;
-                square.style.height = `${960 / dimensions}px`;
+        for (let x = 0; x < dimensions; x++) {
+            for (let y = 0; y < dimensions; y++) {
+                // Create a square "pixel" for the grid
+                const el = document.createElement('div');
+                el.classList.add('grid-square');
+                // Canvas size is 960 x 960 so 960 / dimensions is the length of a side
+                el.style.width = `${960 / dimensions}px`;
+                el.style.height = `${960 / dimensions}px`;
 
-                square.addEventListener('mouseover', color);
+                el.addEventListener('mouseover', color);
 
-                container.appendChild(square);
+                container.appendChild(el);
             }
         }
     }

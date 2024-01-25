@@ -13,9 +13,17 @@
     <section id="controls">
         <input class="input" id="grid-size" type="number" min="1" max="100" value="16">
         <div id="buttons">
-            <button id="marker" class="input btn">Marker</button>
-            <button id="generate" class="input btn">Generate</button>
-            <button id="eraser" class="input btn">Eraser</button>
+            <div id="marker" class="side-btn">
+                <input id="marker-color" class="btn" type="color" value="#000000"/>
+                <button id="marker-btn" class="input btn">Marker</button>
+            </div>
+                <button id="generate" class="input btn">Generate</button>
+            <div id="eraser" class="side-btn">
+                <div id="show-hide">
+                    <div id="check-box" class=""><img id="check" src="./images/checkbox.png">Show Grid</div>
+                </div>
+                <button id="eraser-btn" class="input btn">Eraser</button>
+            </div>
         </div>
     </section>
     <section class="container">
